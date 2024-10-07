@@ -57,16 +57,25 @@
         const submitButton = document.getElementById("submitBtn");
 
         const userInput = parseInt(inputField.value);
+        
 
         // Проверка введенного числа
         if (isNaN(userInput) || userInput < 1 || userInput > 100) {
           outputDiv.textContent = "Пожалуйста, введите число от 1 до 100.";
           return;
         }
-
-        attempts++;
-        previousGuesses.push(userInput); // Сохраняем текущую попытку
-
+        
+         // Сохраняем текущую попытку
+        for(var i =0; i <= previousGuesses.length+1; i++){
+             if(previousGuesses == userInput){
+                outputDiv.textContent = "Не повторяйтесь";
+                return;
+             }
+             else{
+                attempts++;
+            previousGuesses.push(userInput);
+             }
+        }
         if (userInput === secretNumber) {
           outputDiv.textContent = `Поздравляю! Вы угадали число ${secretNumber} за ${attempts} ${
             attempts === 1 ? "попытку" : "попытки"
